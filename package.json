@@ -1,0 +1,12 @@
+{
+  "name": "sparql-pattern-visualizer",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "sparqljs": "^3.7.3"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  }
+}

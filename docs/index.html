@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SPARQL Pattern Visualizer</title>
+
+  <!-- Baselines -->
+  <link rel="stylesheet" href="./vendor/normalize.css" />
+  <link rel="stylesheet" href="./vendor/skeleton.css" />
+
+  <!-- App-scoped styles -->
+  <link rel="stylesheet" href="./styles/sviz.css" />
+</head>
+
+<body>
+  <header class="sviz-header">
+    <div class="container">
+      <h1 class="sviz-header__title">SPARQL Pattern Visualizer</h1>
+      <p class="sviz-header__subtitle">
+        Parse SPARQL syntax and render the WHERE graph without needing endpoint data.
+      </p>
+    </div>
+  </header>
+
+  <main class="sviz-main">
+    <div class="container">
+      <div class="row sviz-layout">
+        <section class="six columns sviz-panel" aria-label="SPARQL editor">
+          <label class="sviz-label" for="svizQuery">SPARQL query</label>
+          <textarea id="svizQuery" class="sviz-textarea" rows="14" spellcheck="false"></textarea>
+
+          <div class="sviz-actions">
+            <button id="svizRenderBtn" class="button-primary">Render diagram</button>
+            <button id="svizResetBtn" class="button">Reset</button>
+          </div>
+
+          <div class="sviz-settings" aria-label="Settings">
+            <label class="sviz-check">
+              <input id="svizShowPrefixes" type="checkbox" checked />
+              <span>Show prefix legend</span>
+            </label>
+
+            <label class="sviz-check">
+              <input id="svizAttachFilters" type="checkbox" />
+              <span>Attach FILTER nodes to variables</span>
+            </label>
+          </div>
+
+          <section class="sviz-meta" aria-label="Query metadata">
+            <div><strong>Query type:</strong> <span id="svizQueryType">—</span></div>
+            <div><strong>Triples (WHERE):</strong> <span id="svizTripleCount">0</span></div>
+          </section>
+        </section>
+
+        <section class="six columns sviz-panel" aria-label="Diagram">
+          <div class="sviz-diagram-wrap">
+            <div id="svizDiagram" class="sviz-diagram" role="img" aria-label="SPARQL graph diagram"></div>
+          </div>
+
+          <section id="svizPrefixes" class="sviz-prefixes" aria-label="Prefixes"></section>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="sviz-footer">
+    <div class="container">
+      <small>Local-only. No query execution. AST → GraphModel → Render.</small>
+    </div>
+  </footer>
+
+  <!-- Toast region -->
+  <div id="svizToastRegion" class="sviz-toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Vendor libs (saved locally) -->
+  <script src="./vendor/cytoscape.min.js" defer></script>
+  <script src="./vendor/sparqljs.umd.js" defer></script>
+
+  <!-- App JS -->
+  <script type="module" src="./scripts/ui_app.js"></script>
+</body>
+</html>
