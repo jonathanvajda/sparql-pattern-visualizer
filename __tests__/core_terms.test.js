@@ -1,4 +1,4 @@
-import { compactIri, termKey, termLabel } from "../docs/scripts/core_terms.js";
+import { compactIri, termKey, termLabel } from "../docs/app/core_terms.js";
 
 test("compactIri prefers prefix match", () => {
   const prefixes = { foaf: "http://xmlns.com/foaf/0.1/" };

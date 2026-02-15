@@ -1,4 +1,4 @@
-import { buildGraphModel } from "../docs/scripts/core_graph.js";
+import { buildGraphModel } from "../docs/app/core_graph.js";
 import SparqlJs from "sparqljs";
 
 test("buildGraphModel extracts WHERE triples and SELECT vars", () => {
