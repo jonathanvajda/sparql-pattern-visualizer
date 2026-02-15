@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SPARQL Pattern Visualizer</title>
 
-  <!-- Baselines -->
-  <link rel="stylesheet" href="./vendor/normalize.css" />
-  <link rel="stylesheet" href="./vendor/skeleton.css" />
+  <!-- Public CSS -->
+  <link rel="stylesheet" href="./styles/normalize.css" />
+  <link rel="stylesheet" href="./styles/skeleton.css" />
 
-  <!-- App-scoped styles -->
+  <!-- App Global CSS -->
+  <link rel="stylesheet" href="./styles/site-header.css" />
+  <link rel="stylesheet" href="./styles/app-base.css" />
+
+  <!-- App Local CSS -->
   <link rel="stylesheet" href="./styles/sviz.css" />
 </head>
 
-<body>
-  <header class="sviz-header">
-    <div class="container">
-      <h1 class="sviz-header__title">SPARQL Pattern Visualizer</h1>
-      <p class="sviz-header__subtitle">
-        Parse SPARQL syntax and render the WHERE graph without needing endpoint data.
-      </p>
-    </div>
-  </header>
+<body data-page-id="sparql-pattern-visualizer">
+  <header id="siteHeader" class="sitehdr-root sviz-header" role="banner" aria-label="Site header"></header>
 
   <main class="sviz-main">
     <div class="container">
@@ -78,6 +75,7 @@
   <script src="./vendor/sparqljs.umd.js" defer></script>
 
   <!-- App JS -->
-  <script type="module" src="./scripts/ui_app.js"></script>
+  <script src="./app/site-header.js"></script>
+  <script type="module" src="./app/ui_app.js"></script>
 </body>
 </html>
