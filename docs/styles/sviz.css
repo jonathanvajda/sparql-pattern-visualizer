@@ -1,10 +1,5 @@
 /* SPARQL Visualizer (sviz-*) — app-scoped styles only */
 
-.sviz-header {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  padding: 1.25rem 0;
-}
-
 .sviz-header__title {
   margin: 0;
   font-size: 1.8rem;
@@ -32,6 +27,7 @@
 }
 
 .sviz-textarea {
+  min-height: 40rem;
   width: 100%;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   resize: vertical;
@@ -66,7 +62,7 @@
 }
 
 .sviz-diagram-wrap {
-  display: grid;
+  /* display: grid;*/
   place-items: stretch;
 }
 
@@ -87,7 +83,6 @@
   border-top: 1px solid rgba(0,0,0,0.08);
   max-height: 10rem;
   overflow: auto;
-  font-size: 0.95rem;
 }
 
 .sviz-prefix-item {
