@@ -17,11 +17,10 @@
         "table-nova": { src: "./images/table-nova-logo.svg", alt: "Table Nova" },
         "shacl-generator": { src: "./images/shacl-generator.svg", alt: "SHACL Generator" },
         "axiolotl": { src: "./images/axiolotl.svg", alt: "Axiolotl SPARQL & Inference" },
-        "sparql-pattern-visualizer": { src: "./images/sparql-pattern-visualizer.svg", alt: "SPARQL Pattern Visualizer" },
         "ontology-curation-manager": { src: "./images/ontology-curation-manager.svg", alt: "Ontology Curation Manager" },
         "myna-iri-swapper": { src: "./images/myna-iri-swapper.svg", alt: "Myna IRI Swapper" },
       },
-      defaultToolLogo: { src: "./images/default.svg", alt: "Tool" }
+      defaultToolLogo: { src: "./images/default-logo.png", alt: "Semantic Tools" }
     },
 
     groups: [
