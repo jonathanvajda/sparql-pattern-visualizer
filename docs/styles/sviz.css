@@ -8,7 +8,8 @@
 
 .sviz-header__subtitle {
   margin: 0.4rem 0 0;
-  color: rgba(0,0,0,0.65);
+  color: var(--ont-text);
+  opacity: 0.65;
 }
 
 .sviz-main {
@@ -19,7 +20,7 @@
   border: 1px solid rgba(0,0,0,0.10);
   border-radius: 14px;
   padding: 1rem;
-  background: #fff;
+  background: var(--ont-bg);
 }
 
 .sviz-label {
@@ -56,7 +57,8 @@
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(0,0,0,0.08);
-  color: rgba(0,0,0,0.75);
+  color: var(--ont-text);
+  opacity: 0.75;
   display: grid;
   gap: 0.25rem;
 }
@@ -72,7 +74,7 @@
   max-width: 50vw;
   height: 60vh;
   max-height: 60vh;
-
+  background-color: var(--ont-panel-bg);
   border: 1px solid rgba(0,0,0,0.10);
   border-radius: 14px;
 }
@@ -98,13 +100,13 @@
 
 .sviz-prefix-val {
   overflow-wrap: anywhere;
-  color: rgba(0,0,0,0.75);
+  color: var(--ont-text);
 }
 
 .sviz-footer {
   border-top: 1px solid rgba(0,0,0,0.08);
   padding: 0.75rem 0;
-  color: rgba(0,0,0,0.65);
+  color: var(--ont-text);
 }
 
 /* Toast */
@@ -119,7 +121,7 @@
 
 .sviz-toast {
   border: 1px solid rgba(0,0,0,0.10);
-  background: #fff;
+  background: var(--ont-bg);
   border-radius: 12px;
   padding: 0.7rem 0.9rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
