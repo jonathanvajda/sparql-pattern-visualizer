@@ -112,7 +112,7 @@ function renderDiagram(graphModel) {
   if (!container) return;
 
   if (!window.cytoscape) {
-    showToast("Cytoscape not found. Did you load vendor/cytoscape.min.js?", "error");
+    showToast("Cytoscape not found. Did you load app/shared/vendor/cytoscape.min.js?", "error");
     return;
   }
 
