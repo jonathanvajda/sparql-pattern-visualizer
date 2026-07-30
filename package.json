@@ -3,10 +3,14 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
     "jest": "^30.0.0",
     "sparqljs": "^3.7.3"
   },
   "scripts": {
+    "check": "npm run lint && npm test",
+    "lint": "eslint . --quiet",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
