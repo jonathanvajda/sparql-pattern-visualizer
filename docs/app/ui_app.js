@@ -5,8 +5,10 @@
 
 import { DEFAULT_QUERY } from "./constants.js";
 import { logEvent, logError } from "./log.js";
-import { parseSparqlToAst } from "./core_parse.js";
-import { buildGraphModel } from "./core_graph.js";
+import {
+  buildSparqlGraphModelFromAst,
+  parseSparqlQueryToAst
+} from "./shared/sparql-utils/index.js";
 import { showToast } from "./ui_toast.js";
 
 /**
@@ -155,8 +157,8 @@ function handleRenderRequest() {
   try {
     logEvent("render.start", { showPrefixes });
 
-    const ast = parseSparqlToAst(queryText);
-    const graphModel = buildGraphModel(ast);
+    const ast = parseSparqlQueryToAst(queryText, { runtime: window });
+    const graphModel = buildSparqlGraphModelFromAst(ast);
 
     renderDiagram(graphModel);
     renderPrefixLegend(graphModel.prefixes, showPrefixes);

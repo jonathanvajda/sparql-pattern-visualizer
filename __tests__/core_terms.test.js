@@ -1,12 +1,16 @@
-import { compactIri, termKey, termLabel } from "../docs/app/core_terms.js";
+import {
+  compactSparqlAstIriForDisplay,
+  createSparqlAstTermKey,
+  formatSparqlAstTermLabel
+} from "../docs/app/shared/sparql-utils/index.js";
 
 test("compactIri prefers prefix match", () => {
   const prefixes = { foaf: "http://xmlns.com/foaf/0.1/" };
-  expect(compactIri("http://xmlns.com/foaf/0.1/name", prefixes)).toBe("foaf:name");
+  expect(compactSparqlAstIriForDisplay("http://xmlns.com/foaf/0.1/name", prefixes)).toBe("foaf:name");
 });
 
 test("termKey stable for variable", () => {
-  expect(termKey({ termType: "Variable", value: "x" })).toBe("var:?x");
+  expect(createSparqlAstTermKey({ termType: "Variable", value: "x" })).toBe("var:?x");
 });
 
 test("termLabel for literal with lang", () => {
@@ -17,5 +21,5 @@ test("termLabel for literal with lang", () => {
     language: "en",
     datatype: { termType: "NamedNode", value: "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString" }
   };
-  expect(termLabel(lit, prefixes)).toContain('"York"@en');
+  expect(formatSparqlAstTermLabel(lit, prefixes)).toContain('"York"@en');
 });
