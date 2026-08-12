@@ -4,6 +4,7 @@
  */
 
 import { logError } from "./log.js";
+import { renderToastNotification } from "./shared/ui-feedback/index.js";
 
 /**
  * Show a toast message.
@@ -13,19 +14,13 @@ import { logError } from "./log.js";
  */
 export function showToast(message, type = "info", opts = {}) {
   try {
-    const region = document.getElementById("svizToastRegion");
-    if (!region) return;
-
-    const toast = document.createElement("div");
-    toast.className = `sviz-toast sviz-toast--${type}`;
-    toast.textContent = String(message ?? "");
-
-    region.appendChild(toast);
-
-    const timeoutMs = Number.isFinite(opts.timeoutMs) ? opts.timeoutMs : 2600;
-    window.setTimeout(() => {
-      try { toast.remove(); } catch { /* noop */ }
-    }, timeoutMs);
+    const result = renderToastNotification({
+      message,
+      severity: type,
+      timeoutMs: Number.isFinite(opts.timeoutMs) ? opts.timeoutMs : 2600,
+      containerId: "toast-container"
+    });
+    if (!result.ok) throw result.error;
   } catch (err) {
     logError("showToast.failed", err, { message, type });
   }
