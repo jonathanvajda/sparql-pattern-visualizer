@@ -9,6 +9,12 @@ import {
   buildSparqlGraphModelFromAst,
   parseSparqlQueryToAst
 } from "./shared/sparql-utils/index.js";
+import {
+  createCytoscapeLayoutOptions,
+  createDefaultCytoscapeStylesheet,
+  projectGraphStateToCytoscapeElements,
+  projectSparqlGraphModelToGraphState
+} from "./shared/cytoscape-visualization/index.js";
 import { showToast } from "./ui_toast.js";
 
 /**
@@ -48,64 +54,6 @@ function renderPrefixLegend(prefixes, isEnabled) {
 }
 
 /**
- * Convert GraphModel into Cytoscape elements.
- * @param {any} graphModel
- * @returns {any[]}
- */
-function toCytoscapeElements(graphModel) {
-  const nodes = (graphModel.nodes || []).map(n => ({ data: n }));
-  const edges = (graphModel.edges || []).map(e => ({ data: e }));
-  return [...nodes, ...edges];
-}
-
-/**
- * Cytoscape style rules (MVP).
- * @returns {any[]}
- */
-function getCytoscapeStyles() {
-  return [
-    {
-      selector: "node",
-      style: {
-        "label": "data(label)",
-        "text-wrap": "wrap",
-        "text-max-width": 140,
-        "font-size": 10,
-        "border-width": 1,
-        "border-color": "#999",
-        "background-color": "#eee",
-        "shape": "ellipse"
-      }
-    },
-    { selector: 'node[category = "class"]', style: { "background-color": "#ffeaa7", "shape": "ellipse" } },
-    { selector: 'node[category = "individual"]', style: { "background-color": "#d6b3ff", "shape": "diamond" } },
-    { selector: 'node[kind = "literal"]', style: { "background-color": "#dff9fb", "shape": "round-rectangle" } },
-    { selector: 'node[kind = "variable"]', style: { "background-color": "#f1f2f6", "shape": "round-rectangle" } },
-
-    // SELECT highlight
-    { selector: 'node[isSelectedVar]', style: { "border-width": 4, "border-color": "#f1c40f" } },
-
-    {
-      selector: "edge",
-      style: {
-        "label": "data(label)",
-        "font-size": 9,
-        "text-rotation": "autorotate",
-        "curve-style": "bezier",
-        "target-arrow-shape": "triangle",
-        "line-color": "#888",
-        "target-arrow-color": "#888",
-        "width": 2
-      }
-    },
-    { selector: 'edge[category = "objectProp"]', style: { "line-color": "#3498db", "target-arrow-color": "#3498db" } },
-    { selector: 'edge[category = "datatypeProp"]', style: { "line-color": "#2ecc71", "target-arrow-color": "#2ecc71" } },
-    { selector: 'edge[category = "annotationProp"]', style: { "line-color": "#e67e22", "target-arrow-color": "#e67e22" } },
-    { selector: 'edge[category = "rdfType"]', style: { "line-color": "#7f8c8d", "target-arrow-color": "#7f8c8d" } }
-  ];
-}
-
-/**
  * Render the Cytoscape diagram.
  * @param {any} graphModel
  */
@@ -121,11 +69,23 @@ function renderDiagram(graphModel) {
   // Rebuild from scratch (simple, deterministic downstream DOM)
   container.innerHTML = "";
 
+  const graphState = projectSparqlGraphModelToGraphState(graphModel, {
+    ui: {
+      activeFilters: {
+        hideBlankNodes: false,
+        hideAxiomSupportNodes: false
+      }
+    }
+  });
+
   const cy = window.cytoscape({
     container,
-    elements: toCytoscapeElements(graphModel),
-    style: getCytoscapeStyles(),
-    layout: { name: "cose", animate: false },
+    elements: projectGraphStateToCytoscapeElements(graphState, {
+      hideBlankNodes: false,
+      hideAxiomSupportNodes: false
+    }),
+    style: createDefaultCytoscapeStylesheet(),
+    layout: createCytoscapeLayoutOptions("readable", { padding: 36 }),
     wheelSensitivity: 0.2
   });
 
