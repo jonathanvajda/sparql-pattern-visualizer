@@ -5,20 +5,20 @@
   // --- Your config (as you provided) ---
   const HEADER_CONFIG = {
     brand: {
-      mainLogo: { href: "/", src: "./images/main-logo.png", alt: "Your org/site" },
+      mainLogo: { href: "/", src: "https://jonathanvajda.github.io/reasonlynx/images/main-logo.png", alt: "Your org/site" },
       toolLogoByPageId: {
-        "ontoeagle": { src: "./images/Eagle-VI_1753264913.svg", alt: "OntoEagle Semantic Lookup" },
-        "ontology-tabulator": { src: "./images/ontology-tabulator.svg", alt: "Ontology Tabulator" },
+        "ontoeagle": { src: "https://jonathanvajda.github.io/reasonlynx/images/Eagle-VI_1753264913.svg", alt: "OntoEagle Semantic Lookup" },
+        "ontology-tabulator": { src: "https://jonathanvajda.github.io/reasonlynx/images/ontology-tabulator.svg", alt: "Ontology Tabulator" },
         "cq-ferret": { src: "./images/cq-ferret.svg", alt: "CQ Ferret" },
         "bp-weaver": { src: "./images/bp-weaver.svg", alt: "BP Weaver" },
         "controlled-vocabulary-registry": { src: "./images/controlled-vocabulary-registry.svg", alt: "Controlled Vocabulary Registry" },
-        "tom": { src: "./images/tom.svg", alt: "Tabular Ontology Maker" },
-        "table-nova": { src: "./images/table-nova-logo.svg", alt: "Table Nova" },
+        "tom": { src: "https://jonathanvajda.github.io/reasonlynx/images/tom.svg", alt: "Tabular Ontology Maker" },
+        "table-nova": { src: "https://jonathanvajda.github.io/reasonlynx/images/table-nova-logo.svg", alt: "Table Nova" },
         "axiolotl": { src: "./images/axiolotl.svg", alt: "Axiolotl SPARQL & Inference" },
-        "myna-iri-swapper": { src: "./images/myna-iri-swapper.png", alt: "Myna IRI Swapper" },
-        "visual-lynx": { src: "./images/visual-lynx.svg", alt: "Visual Lynx" },
+        "myna-iri-swapper": { src: "https://jonathanvajda.github.io/reasonlynx/images/myna-iri-swapper.svg", alt: "Myna IRI Swapper" },
+        "visual-lynx": { src: "https://jonathanvajda.github.io/reasonlynx/images/visual-lynx.svg", alt: "Visual Lynx" },
       },
-      defaultToolLogo: { src: "./images/default-logo.png", alt: "Semantic Tools" },
+      defaultToolLogo: { src: "https://jonathanvajda.github.io/reasonlynx/images/default-logo.png", alt: "Semantic Tools" },
       titleByPageId: {
         "ontoeagle": { title: "OntoEagle Semantic Lookup" },
         "iri-registry": { title: "IRI Registry" },
