@@ -3,13 +3,21 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "fake-indexeddb": "^6.2.7",
     "jest": "^30.0.0",
     "sparqljs": "^3.7.3"
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "npm run test:library && npm run test:storage && node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:library": "node --test __tests__/query-library.node-test.js",
+    "test:storage": "node --test __tests__/query-storage.node-test.js"
   },
   "dependencies": {
     "cytoscape": "^3.33.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ]
   }
 }

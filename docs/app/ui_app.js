@@ -3,6 +3,10 @@
  * @description DOM handlers: parse → build model → render.
  */
 
+import { initQueryLibrary } from "./ui_library.js";
+
+let activeDiagram;
+
 import { DEFAULT_QUERY } from "./constants.js";
 import { logEvent, logError } from "./log.js";
 import { parseSparqlToAst } from "./core_parse.js";
@@ -117,6 +121,7 @@ function renderDiagram(graphModel) {
   }
 
   // Rebuild from scratch (simple, deterministic downstream DOM)
+  activeDiagram?.destroy();
   container.innerHTML = "";
 
   const cy = window.cytoscape({
@@ -126,6 +131,8 @@ function renderDiagram(graphModel) {
     layout: { name: "cose", animate: false },
     wheelSensitivity: 0.2
   });
+
+  activeDiagram = cy;
 
   // Fit but keep padding
   cy.fit(undefined, 24);
@@ -165,6 +172,12 @@ function handleRenderRequest() {
     showToast("Diagram updated.", "success");
     logEvent("render.success", { nodes: graphModel.nodes.length, edges: graphModel.edges.length });
   } catch (err) {
+    activeDiagram?.destroy();
+    activeDiagram = null;
+    document.getElementById('svizDiagram').textContent = 'This query cannot be diagrammed. See the parse error for details.';
+    document.getElementById('svizQueryType').textContent = 'Unavailable';
+    document.getElementById('svizTripleCount').textContent = '—';
+    renderPrefixLegend({}, false);
     logError("render.failed", err, {});
     showToast(`Parse/render failed: ${err?.message ?? err}`, "error", { timeoutMs: 4500 });
   }
@@ -194,6 +207,10 @@ function init() {
 
   // Initial render
   handleRenderRequest();
+  initQueryLibrary({ selectQuery(query) {
+    queryEl.value = query.query;
+    handleRenderRequest();
+  }, resize() { requestAnimationFrame(() => { activeDiagram?.resize(); activeDiagram?.fit(undefined, 24); }); } });
 }
 
 window.addEventListener("DOMContentLoaded", () => init());
